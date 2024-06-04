@@ -1,2 +1,2 @@
 # CigZone
-Into page for CigZone
+Intro page for CigZone
