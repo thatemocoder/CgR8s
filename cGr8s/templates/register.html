@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="60982637815-7i4foqfr24p7suqg2o3m50851vilbged.apps.googleusercontent.com">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        function validateContactNo(input) {
+            input.value = input.value.replace(/[^0-9]/g, '');
+            if (input.value.length > 10) {
+                input.value = input.value.slice(0, 10);
+            }
+        }
+    </script>
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+    <div class="container" id="signup">
+        <h1 class="form-title">Register as {{ role|capitalize }}</h1>
+        <form action="/register" method="post">
+            <div class="input-group">
+                <i class="fas fa-user"></i>
+                <input type="text" name="fullName" id="fullName" placeholder="Full Name" required>
+                <label for="fullName">Full Name</label>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-envelope"></i>
+                <input type="email" name="email" id="email" placeholder="Email" required>
+                <label for="email">Email</label>
+            </div>
+            <div class="input-group">
+                <i class="fas fa-lock"></i>
+                <input type="password" name="password" id="password" placeholder="Password" required>
+                <label for="password">Password</label>
+                <i class="fas fa-eye toggle-password" data-target="password"></i>
+            </div>
+            <div class="input-group">
+                <i class="fa fa-phone" aria-hidden="true"></i>
+                <input type="text" name="contactNo" id="contactNo" placeholder="Contact No" required oninput="validateContactNo(this)">
+                <label for="contactNo">Contact No</label>
+            </div>
+            <input type="submit" class="btn" value="Sign Up" name="signUp">
+        </form>
+        <p class="or">or</p>
+        <div class="icons">
+            <div class="g-signin2" data-onsuccess="onSignIn"></div>
+            <i class="fab fa-google"></i>
+            <i class="fab fa-linkedin-in"></i>
+        </div>
+        <div class="links">
+            <p>Already Have Account ?</p>
+            <a href="{{ url_for('login') }}" class="btn">Sign In</a>
+        </div>
+    </div>
+    <script>
+        function onSignIn(googleUser) {
+          var profile = googleUser.getBasicProfile();
+          console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+          console.log('Name: ' + profile.getName());
+          console.log('Image URL: ' + profile.getImageUrl());
+          console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+    
+          // Send the ID token to your server
+          var id_token = googleUser.getAuthResponse().id_token;
+          console.log('ID Token: ' + id_token);
+    
+          // You can now use the ID token to authenticate the user on your backend
+          // Example: send it via an AJAX request
+          fetch('/google-signin', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id_token: id_token }),
+          }).then(response => response.json())
+            .then(data => {
+              console.log('Success:', data);
+              // Redirect or update UI based on server response
+            }).catch((error) => {
+              console.error('Error:', error);
+            });
+        }
+      </script>
+</body>
+</html>
