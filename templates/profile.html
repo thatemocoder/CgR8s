@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <h1><a href="{{ url_for('front_page') }}">cGr8s</a></h1>
+            </div>
+            <nav>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search jobs here">
+                    <i class="fas fa-search"></i>
+                </div>
+                <!-- <div class="icons">
+                    <i class="fas fa-bell"></i>
+                    <i class="fas fa-user-circle"></i>
+                </div> -->
+            </nav>
+        </div>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-info">
+                <h2 id="profile-name">{{ user.fullname }} <i class="fas fa-edit edit-btn" onclick="openEditModal('name')"></i></h2>
+                <div class="info-item">
+                    <i class="fas fa-map-marker-alt"></i> <span id="profile-location">{{ user.country_code }}</span> <i class="fas fa-edit edit-btn" onclick="openEditModal('location')"></i>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-phone"></i> <span id="profile-mobile">{{ user.mobile_number }}</span> <i class="fas fa-edit edit-btn" onclick="openEditModal('mobile')"></i>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-envelope"></i> <span id="profile-email">{{ user.email }}</span> <i class="fas fa-edit edit-btn" onclick="openEditModal('email')"></i>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-venus-mars"></i> <span id="profile-gender">Add Gender</span> <i class="fas fa-edit edit-btn" onclick="openEditModal('gender')"></i>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-calendar-alt"></i> <span id="profile-birthday">Add birthday</span> <i class="fas fa-edit edit-btn" onclick="openEditModal('birthday')"></i>
+                </div>
+            </div>
+        </div>
+
+        <div class="profile-content">
+            <div class="tab-menu">
+                <a href="#" class="active">View & Edit</a>
+                <a href="#">Jobs</a>
+            </div>
+            <div class="content-section">
+                <div class="quick-links">
+                    <h3>Quick links</h3>
+                    <div class="link-item"><a href="#">Preference</a> <a href="#" class="add-link">Add</a></div>
+                    <div class="link-item"><a href="#">Education</a> <a href="#" class="add-link">Add</a></div>
+                    <div class="link-item"><a href="#">Key skills</a> <a href="#" class="add-link">Add</a></div>
+                    <div class="link-item"><a href="#">Languages</a> <a href="#" class="add-link">Add</a></div>
+                </div>
+                <div class="career-preferences">
+                    <h3>Your career preferences</h3>
+                    <button id="career-preferences-btn">Edit Career Preferences</button>
+                    <div class="preference-item"><a href="#">Preferred job type</a> <a href="#" class="add-link" id="career-preferences-btn">Add desired job type</a></div>
+                    <div class="preference-item"><a href="#">Preferred location</a> <a href="#" class="add-link">Add preferred work location</a></div>
+                    <div class="preference-item"><a href="#">Availability to work</a> <a href="#" class="add-link">Add work availability</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2024 cGr8s. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Edit Modal -->
+    <div id="edit-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeEditModal()">&times;</span>
+            <h2>Edit <span id="edit-field-name"></span></h2>
+            <input type="text" id="edit-field-value">
+            <button onclick="saveEdit()">Save</button>
+        </div>
+    </div>
+
+    <!-- Career Preferences Modal -->
+    <div id="career-preferences-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeCareerPreferencesModal()">&times;</span>
+            <h2>Career Preferences</h2>
+            <p>Tell us your preferences for your next job & we will send you most relevant recommendations</p>
+
+            <div class="preferences-section">
+                <h3>Looking for</h3>
+                <div>
+                    <input type="checkbox" id="internships" name="lookingFor" value="Internships">
+                    <label for="internships">Internships</label>
+                    <input type="checkbox" id="jobs" name="lookingFor" value="Jobs">
+                    <label for="jobs">Jobs</label>
+                </div>
+            </div>
+
+            <div class="preferences-section">
+                <h3>Availability to work</h3>
+                <div>
+                    <input type="radio" id="15days" name="availability" value="15 Days or less">
+                    <label for="15days">15 Days or less</label>
+                    <input type="radio" id="1month" name="availability" value="1 Month">
+                    <label for="1month">1 Month</label>
+                    <input type="radio" id="2months" name="availability" value="2 Months">
+                    <label for="2months">2 Months</label>
+                    <input type="radio" id="3months" name="availability" value="3 Months">
+                    <label for="3months">3 Months</label>
+                    <input type="radio" id="moreThan3Months" name="availability" value="More than 3 Months">
+                    <label for="moreThan3Months">More than 3 Months</label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript code for handling the modals and edit actions
+        function openEditModal(field) {
+            document.getElementById('edit-field-name').innerText = field;
+            document.getElementById('edit-modal').style.display = 'block';
+        }
+
+        function closeEditModal() {
+            document.getElementById('edit-modal').style.display = 'none';
+        }
+
+        function saveEdit() {
+            // Logic to save the edited field value
+            closeEditModal();
+        }
+
+        function openCareerPreferencesModal() {
+            document.getElementById('career-preferences-modal').style.display = 'block';
+        }
+
+        function closeCareerPreferencesModal() {
+            document.getElementById('career-preferences-modal').style.display = 'none';
+        }
+
+        document.getElementById('career-preferences-btn').addEventListener('click', openCareerPreferencesModal);
+    </script>
+    <!-- <script src="{{ url_for('static', filename='profile.js') }}"></script> -->
+</body>
+</html>

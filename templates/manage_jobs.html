@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Jobs and Responses</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_jobs.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="{{ url_for('front_page') }}">cGr8s</a></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Resdex</a>
+            <a href="#">Jobs & responses</a>
+            <a href="#">Manage account</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Manage Jobs and Responses</h1>
+        <div class="container-buttons">
+            <button class="button" id="searchButton">Search CVs across all jobs</button>
+            <button class="button primary" id="postJobButton">Post a job</button>
+        </div>
+        <div class="content">
+            <aside class="sidebar">
+                <div class="filters">
+                    <h2>Filters</h2>
+                    <div class="sort-by">
+                        <h3>Sort by</h3>
+                        <button class="button sort-button">Posted date New → Old</button>
+                        <button class="button sort-button">Posted date Old → New</button>
+                        <button class="button sort-button">Job title A → Z</button>
+                    </div>
+                    <div class="search">
+                        <input type="text" placeholder="Search by Job ID/Title">
+                    </div>
+                    <div class="job-status">
+                        <h3>Job status</h3>
+                        <!-- Add options here if needed -->
+                    </div>
+                    <div class="job-types">
+                        <h3>Job types</h3>
+                        <!-- Add options here if needed -->
+                    </div>
+                </div>
+            </aside>
+            <main class="main-content">
+                <div class="tab-bar">
+                    <button class="tab-button active">All Jobs</button>
+                    <button class="tab-button">Drafts</button>
+                </div>
+                <div class="job-list">
+                    <div class="icon-wrapper">
+                        <img src="{{ url_for('static', filename='folder-icon.png') }}" alt="Folder Icon" class="folder-icon">
+                    </div>
+                    <p class="no-jobs-message">You have no jobs right now</p>
+                    <p class="sub-message">Once you start posting jobs, you can track them all here</p>
+                    <a href="{{ url_for('job_posting') }}">
+                        <button class="button primary">Post a job</button>
+                    </a>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer>
+        <div class="foot">
+            <p>&copy; 2024 cGr8s. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='manage_jobs.js') }}"></script>
+</body>
+</html>

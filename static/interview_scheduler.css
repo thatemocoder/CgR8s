@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #1c1c1c;
+    color: #333;
+}
+
+header {
+    background-color: #1c1c1c;
+    color: #c8a152;
+    padding: 1rem 2rem;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 1rem;
+}
+
+header h1, footer p {
+    margin: 0;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+section {
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    margin-bottom: 10px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 25px;
+}
+
+button {
+    padding: 10px;
+    border: none;
+    border-radius: 25px;
+    background-color: #c8a152;
+    color: white;
+    cursor: pointer;
+    font-size: small;
+}
+
+button:hover {
+    background-color: #2c5282;
+}
+
+.button.primary {
+    background-color: #c8a152;
+    color: white;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 25px;
+    text-align: center;
+    font-size: small;
+}
+
+#messageSection {
+    text-align: center;
+    margin-top: 20px;
+}
+
+footer {
+    padding: 20px 0;
+    background: #1c1c1c;
+    text-align: center;
+    margin-top: 100px;
+}
+
+footer p {
+    margin: 0;
+    color: #ccc;
+}
+
+@media (max-width: 768px) {
+    main {
+        max-width: 80%;
+    }
+}

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cGr8s - Ready to hire like you're in 2050?</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing_employer.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="{{ url_for('front_page') }}">cGr8s</a></div>
+        <nav>
+            <!-- <a href="#">Product</a>
+            <a href="#">Help</a>
+            <a href="#">Testimonials</a> -->
+            <a href="{{ url_for('login') }}">Job Seeker Login</a>
+        </nav>
+    </header>
+    
+    <main>
+        <div class="hero">
+            <div class="hero-content">
+                <h1>Ready to hire like you're in 2050?</h1>
+                <p>We're revolutionising recruitment. Sign up now!</p>
+            </div>
+            <div class="login-form">
+                <div class="form-tabs">
+                    <button class="active">Login/Sign up</button>
+                </div>
+                <form id="login-form" method="post" action="{{ url_for('login') }}" enctype="multipart/form-data">
+                    <div class="input-group">
+                        <input type="text" id="email" placeholder="Enter Email ID">
+                    </div>
+                    <div class="input-group">
+                        <input type="password" id="password" placeholder="Enter your password">
+                        <i class="fas fa-eye-slash toggle-password"></i>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot Password?</a>
+                    <button type="submit" class="login-btn">Login</button>
+                </form>
+                <p class="signup-link">New User? <a href="{{ url_for('register_employer') }}">Sign Up</a></p>
+            </div>
+        </div>
+    </main>
+
+    <section class="services">
+        <h2>Our Services</h2>
+        <h2 class="service-number">01</h2>
+        <h2 class="service-title">Talent Search</h2>
+        <p class="service-description">Talent Search is a tool to navigate an ocean of profiles. It helps you locate talent that's a perfect fit - for you.</p>
+        
+        <div class="service-cards">
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='search-talent.png') }}" alt="Search for Talent">
+                <h3>Search for Talent</h3>
+                <p>Find profiles that exactly match your needs</p>
+            </div>
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='job-posting.png') }}" alt="Job Posting">
+                <h3>Job Posting</h3>
+                <p>Post jobs that grab eyeballs, tapping into a wide pool of talent</p>
+            </div>
+            <div class="service-card">
+                <img src="{{ url_for('static', filename='social-job-ads.png') }}" alt="Social Job Ads">
+                <h3>Social Job Ads</h3>
+                <p>Target millions of qualified candidates across social media platforms</p>
+            </div>
+        </div>
+        
+        <!-- <div class="service-buttons">
+            <button class="btn btn-primary">Know More</button>
+            <button class="btn btn-secondary">Talk to Sales</button>
+        </div> -->
+    </section>
+    <section class="dashboard" style="display: none;">
+        <h1>Welcome back!</h1>
+        <h2>Quick links for you</h2>
+        <div class="dashboard-grid">
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <span class="icon search-icon">🔍</span>
+                    <h3>Search candidates (Resdex)</h3>
+                </div>
+                <p>Use 27+ criteria & find relevant profiles for your open roles</p>
+                <button class="btn btn-primary">Search now</button>
+                <ul>
+                    <li><a href="#">CV folders</a></li>
+                    <li><a href="#">Saved searches & alerts</a></li>
+                    <li><a href="#">Email templates</a></li>
+                    <li><a href="#">Response manager for emails</a></li>
+                    <li><a href="{{ url_for('interview_scheduler') }}">Interview scheduler</a></li>
+                </ul>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <span class="icon job-icon">💼</span>
+                    <h3>Post a job</h3>
+                </div>
+                <p>Now find the perfect candidates faster than ever before</p>
+                <a href="{{ url_for('job_posting') }}">
+                    <button class="btn btn-primary">Post a job</button>
+                </a>
+                <ul>
+                    <li><a href="{{ url_for('manage_jobs') }}">Manage jobs & responses</a></li>
+                    <li><a href="#">My folders</a></li>
+                </ul>
+                <div class="sub-card">
+                    <span class="icon meter-icon">📊</span>
+                    <h4>Job posting credit meter</h4>
+                    <p>Here's your utilisation summary</p>
+                </div>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <span class="icon career-icon">📈</span>
+                    <h3>Power your career site(PCS)</h3>
+                </div>
+                <p>Now get your corporate site created by us and attract talent</p>
+                <ul>
+                    <li>Convert your website visitors into job applicants</li>
+                </ul>
+                <a href="#" class="view-more">View more</a>
+            </div>
+            <div class="dashboard-card">
+                <div class="card-header">
+                    <span class="icon branding-icon">🏆</span>
+                    <h3>Attract talent with our employer branding solutions</h3>
+                </div>
+                <p>Make the most of our branding tools to get recognised by millions of jobseekers</p>
+                <a href="#" class="talk-experts">Talk to the experts →</a>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 cGr8s. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script>
+        const loginUrl = "{{ url_for('login') }}";
+    </script>
+    <script src="{{ url_for('static', filename='landing_employer.js') }}"></script>
+</body>
+</html>

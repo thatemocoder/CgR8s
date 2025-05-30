@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cGr8s</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='landing.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header id="header">
+        <div class="container header-content">
+            <div class="logo">
+                <h1>cGr8s</h1>
+            </div>
+            <nav>
+                <ul id="nav-list">
+                    {% if logged_in %}
+                    <li class="hello-user">Hello, {{ user }}</li>
+                    <li><a href="{{ url_for('logout') }}" class="btn logout">Logout</a></li>
+                {% else %}
+                    <li class="login"><a href="{{ url_for('login') }}" class="btn login">Login / Register</a></li>
+                {% endif %}                
+                    <li class="divider"> | </li>
+                    <li><a href="{{ url_for('front_page_employer') }}">For Employers</a></li>
+                </ul>
+                <div id="hamburger-menu" class="hamburger-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Find your dream job now</h1>
+            <p>5 lakh+ jobs for you to explore</p>
+            <form class="search-form">
+                <div class="input-group">
+                    <input type="text" placeholder="Enter skills / designations / companies" required>
+                </div>
+                <div class="input-group">
+                    <select>
+                        <option value="" disabled selected>Select experience</option>
+                        <option value="fresher">Fresher (no experience)</option>
+                        <option value="0-1">0-1 years</option>
+                        <option value="1-3">1-3 years</option>
+                        <option value="3-5">3-5 years</option>
+                        <option value="5+">5+ years</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <input type="text" placeholder="Enter location" required>
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="job-categories">
+        <div class="container">
+            <button class="scroll-btn left-btn"><i class="fas fa-chevron-left"></i></button>
+            <div class="categories-grid">
+                <div class="category-item"><i class="fas fa-industry"></i> Manufacturing</div>
+                <div class="category-item"><i class="fas fa-wrench"></i> Operations</div>
+                <div class="category-item"><i class="fas fa-briefcase"></i> Product & Quality</div>
+                <div class="category-item"><i class="fas fa-cogs"></i> Engineering</div>
+                <div class="category-item"><i class="fas fa-truck"></i> Supply Chain</div>
+                <div class="category-item"><i class="fas fa-project-diagram"></i> Projects</div>
+                <div class="category-item"><i class="fas fa-user-tie"></i> Human Resources</div>
+                <div class="category-item"><i class="fas fa-rocket"></i> Administration</div>
+                <div class="category-item"><i class="fas fa-chart-line"></i> Finance</div>
+                <div class="category-item"><i class="fas fa-laptop-code"></i> Information Technology</div>
+                <div class="category-item"><i class="fas fa-search-dollar"></i> Internal Audit</div>
+                <div class="category-item"><i class="fas fa-bullhorn"></i> Brand Management</div>
+            </div>
+            <button class="scroll-btn right-btn"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 cGr8s. All Rights Reserved.</p>
+        </div>
+    </footer>
+    <script src="{{ url_for('static', filename='landing.js') }}"></script>
+</body>
+</html>

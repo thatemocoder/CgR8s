@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post Job</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='job_posting.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="{{ url_for('front_page') }}">cGr8s</a></div>
+        <nav>
+            <a href="{{ url_for('front_page') }}">Home</a>
+            <a href="#">Jobs & responses</a>
+            <a href="#">Manage account</a>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h1>Enter Job Details</h1>
+        <form id="jobForm" action="{{ url_for('submit_job') }}" method="POST">
+            <div class="form-group">
+                <label for="jobTitle">Job Title*</label>
+                <input type="text" id="jobTitle" name="jobTitle" placeholder="Please enter the job title which best describes the role" required>
+            </div>
+            <div class="form-group">
+                <label for="jobType">Job Type*</label>
+                <select id="jobType" name="jobType" required>
+                    <option value="Full Time">Full Time</option>
+                    <option value="Part Time">Part Time</option>
+                    <option value="Contract">Contract</option>
+                </select>
+                <select id="jobLocation" name="jobLocation" required>
+                    <option value="On Site">On Site</option>
+                    <option value="Remote">Remote</option>
+                    <option value="Hybrid">Hybrid</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="jobDescription">Job Description*</label>
+                <textarea id="jobDescription" name="jobDescription" placeholder="Start crafting your job description..." required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="keywords">Keywords*</label>
+                <input type="text" id="keywords" name="keywords" placeholder="Enter designations and skills associated with the job" required>
+            </div>
+            <div class="form-group">
+                <label for="vacancies">Number of Vacancies*</label>
+                <input type="number" id="vacancies" name="vacancies" value="1" required>
+            </div>
+            <div class="form-group">
+                <label for="jobCountry">Job Country*</label>
+                <select id="jobCountry" name="jobCountry" required>
+                    <option value="">Select the job country</option>
+                    <option value="UAE">United Arab Emirates (UAE)</option>
+                    <option value="Saudi Arabia">Saudi Arabia</option>
+                    <option value="Qatar">Qatar</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="industry">Industry*</label>
+                <input type="text" id="industry" name="industry" placeholder="Enter the Industry type of the job" required>
+            </div>
+            <div class="form-group">
+                <label for="functionalArea">Functional Area*</label>
+                <input type="text" id="functionalArea" name="functionalArea" placeholder="Enter the functional area of the job" required>
+            </div>
+            <div class="form-group">
+                <label for="salary">Monthly Salary*</label>
+                <select id="currency" name="currency" required>
+                    <option value="AED">UAE Dirham</option>
+                    <option value="SAR">Saudi Riyal</option>
+                    <option value="QAR">Qatari Riyal</option>
+                </select>
+                <input type="number" id="salaryMin" name="salaryMin" placeholder="Min" required>
+                <input type="number" id="salaryMax" name="salaryMax" placeholder="Max" required>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="hideSalary" name="hideSalary">
+                <label for="hideSalary">Hide salary from Job Seekers</label>
+            </div>
+            <div class="form-group">
+                <label for="benefits">Add Benefits apart from salary</label>
+                <textarea id="benefits" name="benefits" placeholder="List benefits here..."></textarea>
+            </div>
+            <div class="form-group">
+                <label for="questions">Custom Questions for Candidates</label>
+                <textarea id="questions" name="questions" placeholder="You can ask up to 6 custom questions for the candidates"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="companyProfile">Company Profile*</label>
+                <input type="text" id="companyProfile" name="companyProfile" placeholder="Enter company profile details" required>
+            </div>
+            <div class="form-group">
+                <label for="contactPerson">Contact Person</label>
+                <input type="text" id="contactPerson" name="contactPerson" placeholder="Enter the POC name" required>
+            </div>
+            <div class="form-group">
+                <label for="contactDesignation">Contact Person Designation</label>
+                <input type="text" id="contactDesignation" name="contactDesignation" placeholder="Enter designation of the POC" required>
+            </div>
+            <div class="form-group">
+                <label for="companyAddress">Company Address</label>
+                <textarea id="companyAddress" name="companyAddress" placeholder="Enter your company address" required></textarea>
+            </div>
+            <div class="form-group">
+                <input type="checkbox" id="hideEmployerDetails" name="hideEmployerDetails">
+                <label for="hideEmployerDetails">Hide employer details</label>
+            </div>
+            <button type="button">Preview and Post job</button>
+            <button type="submit">Post job</button>
+            <button type="button" onclick="sendForReview()">Send For Review</button>
+        </form>
+    </div>
+    <script src="{{ url_for('static', filename='job_posting.js') }}"></script>
+</body>
+</html>

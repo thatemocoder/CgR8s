@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interview Scheduler</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='interview_scheduler.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="{{ url_for('front_page') }}">cGr8s</a></div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Resdex</a>
+            <a href="#">Jobs & responses</a>
+            <a href="#">Manage account</a>
+        </nav>
+    </header>
+    
+    <main>
+        <section>
+            <h2>Add Candidate</h2>
+            <form id="addCandidateForm" action="/add_candidate" method="post">
+                <label for="candidateName">Name:</label>
+                <input type="text" id="candidateName" name="name" required>
+                <label for="candidateSlots">Available Slots (comma-separated):</label>
+                <input type="text" id="candidateSlots" name="slots" required>
+                <button type="submit">Add Candidate</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Add Interviewer</h2>
+            <form id="addInterviewerForm" action="/add_interviewer" method="post">
+                <label for="interviewerName">Name:</label>
+                <input type="text" id="interviewerName" name="name" required>
+                <label for="interviewerSlots">Available Slots (comma-separated):</label>
+                <input type="text" id="interviewerSlots" name="slots" required>
+                <button type="submit">Add Interviewer</button>
+            </form>
+        </section>
+
+        <section>
+            <h2>Schedule Interviews</h2>
+            <a href="/schedule" class="button primary">View Schedule</a>
+        </section>
+
+        <section id="messageSection">
+            <!-- This will be filled by JavaScript if there's a message -->
+        </section>
+    </main>
+
+    <footer>
+        <div class="foot">
+            <p>&copy; 2024 cGr8s. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='interview_scheduler.js') }}"></script>
+</body>
+</html>

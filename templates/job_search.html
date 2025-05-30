@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Search Site</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='job_search.css') }}">
+</head>
+<body>
+    <header>
+        <div class="logo"><a href="{{ url_for('front_page') }}">cGr8s</a></div>
+        <nav>
+            <ul id="nav-list">
+                <li><a href="{{ url_for('front_page') }}">Home</a></li>
+                <!-- <li><a href="#">Jobs</a></li>
+                <li><a href="#">Services</a></li> -->
+                <li><a href="{{ url_for('profile') }}">Profile</a></li>
+                <!-- <li class="login"><a href="#" class="btn login">Login</a></li> -->
+            </ul>
+            <div id="hamburger-menu" class="hamburger-menu">
+                <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Search by job, company...">
+        <input type="text" placeholder="Location">
+        <select>
+            <option>Experience</option>
+        </select>
+        <button class="search-button">Search</button>
+    </div>
+
+    <div class="filters">
+        <button>Quick Apply</button>
+        <button>Location</button>
+        <button>Experience</button>
+        <button>Salary</button>
+        <button>Function</button>
+        <button>Industry</button>
+        <button>Role</button>
+        <button>Job Type</button>
+    </div>
+
+    <div class="job-list">
+        {% for job in jobs %}
+        <div class="job-card">
+            <h3>{{ job.job_title }}</h3>
+            <p>{{ job.company_profile }} • {{ job.job_description }}</p>
+            <p>{{ job.job_type }} • {{ job.job_location }} • {{ job.job_country }} • {{ job.vacancies }} Vacancies</p>
+            <p>{{ job.keywords }}</p>
+            <button class="quick-apply">Quick Apply</button>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        document.querySelectorAll('.quick-apply').forEach(button => {
+            button.addEventListener('click', async () => {
+                const jobId = button.getAttribute('data-job-id');
+                const response = await fetch('/quick_apply', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ jobId }),
+                });
+                const result = await response.json();
+                if (result.success) {
+                    alert('Applied successfully');
+                } else {
+                    alert('Application failed: ' + result.message);
+                }
+            });
+        });
+    </script>
+
+    <script src="{{ url_for('static', filename='job_search.js') }}"></script>
+</body>
+</html>
