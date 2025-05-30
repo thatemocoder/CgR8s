@@ -1,2 +1,1 @@
-# CigZone
-Intro page for CigZone
+# CgR8s
